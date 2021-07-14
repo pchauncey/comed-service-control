@@ -78,11 +78,13 @@ def main():
             if state is not False:
                 logging.warning("disabling, rate is " + str(current) + " cents per kWh, and limit is " + str(rate_limit))
                 service_control(services, False)
+                state = False
         else:
             # rate is low:
             if state is not True:
                 logging.warning("enabling, rate is " + str(current) + " cents per kWh, and limit is " + str(rate_limit))
                 service_control(services, True)
+                state = True
 
         sleep(loop_seconds)
 

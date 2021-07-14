@@ -8,7 +8,7 @@ ExecStart=/usr/bin/python /home/patrick/comed-service-control/main.py
 WorkingDirectory=/home/patrick/comed-service-control
 Restart=always
 RestartSec=10
-User=pi
+User=root
 
 [Install]
 WantedBy=multi-user.target
