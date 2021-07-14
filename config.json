@@ -1,0 +1,8 @@
+{
+	"comed_api_url": "https://hourlypricing.comed.com/api?type=5minutefeed",
+	"services": [
+		"ethminer.service"
+	],
+	"loop_seconds": 60,
+	"rate_limit": 4.5
+}

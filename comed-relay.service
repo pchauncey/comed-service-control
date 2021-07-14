@@ -1,0 +1,14 @@
+[Unit]
+Description=ComEd relay controller
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python /home/pi/comed-relay/main.py
+WorkingDirectory=/home/pi/comed-relay
+Restart=always
+RestartSec=10
+User=pi
+
+[Install]
+WantedBy=multi-user.target
