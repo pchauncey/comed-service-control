@@ -79,7 +79,6 @@ def main():
 
         # optional git pull every loop
         if get_config("git_pull"):
-            print("Debug: git pull")
             git_pull()
 
         try:
