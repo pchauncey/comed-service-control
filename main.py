@@ -81,7 +81,7 @@ def main():
         rate_limit = get_config("rate_limit")
         loop_seconds = get_config("loop_seconds")
 
-                try:
+        try:
             current = get_rate()
         except HTTPError as http_error:
             print(f'HTTP error occurred: {http_error}')
