@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
 import dbus
+import git
 import json
 import logging
 import requests
 import signal
+from requests.exceptions import HTTPError
 from sys import exit
 from time import sleep
-from requests.exceptions import HTTPError
-
 
 
 def get_config(key):
@@ -21,6 +21,7 @@ def get_config(key):
 def mean(numbers):
     return float(sum(numbers)) / max(len(numbers), 1)
 
+
 def service_control(service_list, control):
     SYSTEMD_BUSNAME = 'org.freedesktop.systemd1'
     SYSTEMD_PATH = '/org/freedesktop/systemd1'
@@ -29,13 +30,21 @@ def service_control(service_list, control):
     systemd_object = bus.get_object(SYSTEMD_BUSNAME, SYSTEMD_PATH)
     systemd_manager = dbus.Interface(systemd_object, SYSTEMD_MANAGER_INTERFACE)
     for service in service_list:
-        if control == True:
+        if control is True:
             print("Starting service: %s" % service)
             systemd_manager.StartUnit(service, 'replace')
         else:
             print("Stopping service: %s" % service)
             systemd_manager.StopUnit(service, 'replace')
         sleep(2)
+
+
+def git_pull():
+    g = git.cmd.Git()
+    try:
+        g.pull()
+    except:
+        return
 
 
 def get_rate():
@@ -67,6 +76,11 @@ def main():
         # allow these to be changes during loop
         rate_limit = get_config("rate_limit")
         loop_seconds = get_config("loop_seconds")
+
+        # optional git pull every loop
+        if get_config("git_pull"):
+            print("Debug: git pull")
+            git_pull()
 
         try:
             current = get_rate()
