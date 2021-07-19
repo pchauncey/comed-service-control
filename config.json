@@ -5,6 +5,6 @@
 		"ethminer.service"
 	],
 	"loop_seconds": 60,
-	"rate_limit": 5.9,
+	"rate_limit": 3.0,
 	"git_pull": "True"
 }
