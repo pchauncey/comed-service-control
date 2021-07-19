@@ -35,6 +35,7 @@ def service_control(service_list, control):
         else:
             print("Stopping service: %s" % service)
             systemd_manager.StopUnit(service, 'replace')
+        sleep(2)
 
 
 def get_rate():
