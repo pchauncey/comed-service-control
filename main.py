@@ -73,15 +73,15 @@ def main():
     services = get_config("services")
 
     while True:
-        # allow these to be changes during loop
-        rate_limit = get_config("rate_limit")
-        loop_seconds = get_config("loop_seconds")
-
         # optional git pull every loop
         if get_config("git_pull"):
             git_pull()
 
-        try:
+        # allow these to be changes during loop
+        rate_limit = get_config("rate_limit")
+        loop_seconds = get_config("loop_seconds")
+
+                try:
             current = get_rate()
         except HTTPError as http_error:
             print(f'HTTP error occurred: {http_error}')
